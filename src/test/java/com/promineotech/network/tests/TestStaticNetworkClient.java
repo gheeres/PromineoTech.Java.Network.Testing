@@ -1,5 +1,7 @@
 package com.promineotech.network.tests;
 
+import org.snmp4j.smi.Address;
+import org.snmp4j.smi.UdpAddress;
 import com.promineotech.network.InterfaceDetail;
 import com.promineotech.network.NetworkClient;
 

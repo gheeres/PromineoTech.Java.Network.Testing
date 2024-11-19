@@ -13,7 +13,14 @@ public class NetworkStatisticExportTests {
     NetworkStatisticsExport exporter = new NetworkStatisticsExport();
     NetworkStatisticsExport spyExporter = spy(exporter);
     
-    // TODO
+    doReturn(List.of("{ }", "{ }", "{ }", "{ }")).when(spyExporter).export();
+    
+    List<String> actual = spyExporter.export(); 
+
+    assertThat(actual.size()).isEqualTo(4);
+    for(String a : actual) {
+      assertThat(a).isEqualTo("{ }");
+    }
   }
   
   @Test
@@ -25,7 +32,12 @@ public class NetworkStatisticExportTests {
       new TestStaticNetworkClient(4000, 4000)
     ).toArray(new TestStaticNetworkClient[0]);
     NetworkStatisticsExport exporter = new NetworkStatisticsExport(clients);
+    List<String> actual = exporter.export(); 
 
-    // TODO
+    assertThat(actual.size()).isEqualTo(clients.length);
+    for(int index = 0; index < clients.length; index++) {
+      String expected = clients[index].toJSON(1);
+      assertThat(actual.get(index)).isEqualTo(expected);
+    }
   }  
 }
