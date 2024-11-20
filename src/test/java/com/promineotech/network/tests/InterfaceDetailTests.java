@@ -13,13 +13,28 @@ class InterfaceDetailTests {
 
   @Test
   void constructor_With_Null_Interface_Returns_Null_For_getIfDescr() {
-    // TODO
+    // Arrange
+    InterfaceDetail statistics = new InterfaceDetail(1, null, 0, 0);
+    
+    // Act
+    String actual = statistics.getIfDescr();
+    
+    // Assert
+    // assertThat(actual).isEqualTo(null);
+    assertThat(actual).isNull();
   }  
 
   @ParameterizedTest
-  @ValueSource(strings = { "", " ", "  " })
+  @ValueSource(strings = { "", " ", "  ", "        " })
   void constructor_With_Empty_Or_Blank_Interface_Returns_Null_getIfDescr(String ifDescr) {
-    // TODO
+    // Arrange
+    InterfaceDetail statistics = new InterfaceDetail(1, ifDescr, 0, 0);
+    
+    // Act
+    String actual = statistics.getIfDescr();
+    
+    // Assert
+    assertThat(actual).isNull();
   }  
 
   @Test
