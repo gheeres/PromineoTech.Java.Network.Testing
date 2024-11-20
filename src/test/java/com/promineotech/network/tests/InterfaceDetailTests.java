@@ -13,24 +13,52 @@ class InterfaceDetailTests {
 
   @Test
   void constructor_With_Null_Interface_Returns_Null_For_getIfDescr() {
-    // TODO
+    // Arrange
+    InterfaceDetail statistics = new InterfaceDetail(1, null, 0, 0);
+    
+    // Act
+    String actual = statistics.getIfDescr();
+    
+    // Assert
+    assertThat(actual).isNull();
   }  
-
+  
   @ParameterizedTest
-  @ValueSource(strings = { "", " ", "  " })
+  @ValueSource(strings = { "", " ", "  ", "   " })
   void constructor_With_Empty_Or_Blank_Interface_Returns_Null_getIfDescr(String ifDescr) {
-    // TODO
+    // Arrange
+    InterfaceDetail statistics = new InterfaceDetail(1, ifDescr, 0, 0);
+    
+    // Act
+    String actual = statistics.getIfDescr();
+    
+    // Assert
+    assertThat(actual).isNull();
   }  
 
   @Test
   void toString_With_No_Interface_Name_Returns_Expected_Result() {
-    // TODO
+    // Arrange
+    String expected = "Interface[ 2]: In/Out:         7000 /         2000 bytes";
+    InterfaceDetail statistics = new InterfaceDetail(2, null, 7000, 2000);
+    
+    // Act
+    String actual = statistics.toString();
+    
+    // Assert
+    assertThat(actual).isEqualTo(expected);
   }
 
   @ParameterizedTest
   @MethodSource("getSampleInterfaceStatistics")
   void toString_With_Returns_Expected_Result(InterfaceDetail statistics, String expected) {
-    // TODO
+    // Arrange
+    
+    // Act
+    String actual = statistics.toString();
+    
+    // Assert
+    assertThat(actual).isEqualTo(expected);
   }
   
   private static Stream<Arguments> getSampleInterfaceStatistics() {
